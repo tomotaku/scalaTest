@@ -9,13 +9,14 @@ object DirReduction {
       "EAST" -> "WEST",
       "WEST" -> "EAST"
     )
-    val newArr:Array[String] = " " +: arr
+    val newArr: Array[String] = " " +: arr
     newArr
       .map(s => Array(s))
       .reduce((x, y) =>
         if (x.last != opposite(y.mkString)) x ++ y else x.slice(0, x.length - 1)
       )
   }.tail
+
   def dirReducSilly(arr: Array[String]): Array[String] = {
     // your code
     val opposite = Map(
@@ -30,9 +31,8 @@ object DirReduction {
     var before = arr(point)
     var after = arr(point + 1)
     if (before != opposite(after)) {
-      return Array(before)++dirReducSilly(arr.slice(1, arr.length))
+      return Array(before) ++ dirReducSilly(arr.slice(1, arr.length))
     }
-    return dirReducSilly(arr.slice(2, arr.length))
+    dirReducSilly(arr.slice(2, arr.length))
   }
 }
-

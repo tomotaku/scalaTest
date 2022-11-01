@@ -13,9 +13,9 @@ object Cubes {
       "\\D+".r.split(s).map(_.grouped(3).toArray).flatten.map(_.toInt).toList
     val isMatch: List[Int] = sFiltered.filter(cubes.contains(_))
     if (isMatch.length == 0) {
-      return "Unlucky"
+      "Unlucky"
     } else {
-      return isMatch.mkString(" ") ++ isMatch.sum.toString ++ "Lucky"
+      isMatch.mkString(" ") ++ isMatch.sum.toString ++ "Lucky"
     }
   }
 }

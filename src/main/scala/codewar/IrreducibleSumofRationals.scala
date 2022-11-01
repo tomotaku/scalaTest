@@ -1,6 +1,9 @@
 package main.scala.codewar
 
-object Fracts {
+import scala.annotation.tailrec
+
+object IrreducibleSumofRationals {
+  @tailrec
   def gcd(a: Long, b: Long): Long = {
     if (b == 0) a else gcd(b, a % b)
   }
