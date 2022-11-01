@@ -1,3 +1,5 @@
+import main.scala.codewar.LongestConsec.longestConsec
+
 object LongestConsecTest {
   def main(args: Array[String]): Unit = {
     println(

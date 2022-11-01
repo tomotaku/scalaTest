@@ -1,12 +1,9 @@
-import main.scala.codewar.Sol
+import main.scala.codewar.FibSol._
 
-object fibTest {
-  def main(args: Array[String]) {
+object fibTest extends App {
     println(
-      Sol
-        .fib(
+      fib(
           50
         )
     )
-  }
 }
