@@ -1,8 +1,10 @@
 package main.scala.demo
 
+import org.apache.poi.hssf.usermodel.HSSFWorkbook
 import org.apache.poi.ss.usermodel._
-import org.apache.poi.xssf.usermodel.XSSFWorkbook
+
 import java.io.{FileInputStream, FileOutputStream, InputStream, OutputStream}
+import scala.collection.mutable.ListBuffer
 case class RowData(mobile:String,no:String,question:String,answer:String)
 
 object excelTest extends App {
@@ -13,8 +15,8 @@ object excelTest extends App {
   try{
     val os:OutputStream = new FileOutputStream (resPath)
     {
-      workbook.write(os);
-      os.flush();
+      workbook.write(os)
+      os.flush()
     }
   }
   catch {
@@ -22,11 +24,26 @@ object excelTest extends App {
   }
   def getSourceData(sourcePath: String):List[RowData] = {
     val inputStream: InputStream = new FileInputStream(sourcePath)
-    val workbook:Workbook = new XSSFWorkbook(inputStream)
+    val workBook:Workbook = new HSSFWorkbook(inputStream)
+    val sheet = workBook.getSheetAt(0)
+    val rows = sheet.rowIterator()
+    var rowDataList: List[RowData] = List()
+    //跳过第一行
+    rows.next()
+    while (rows.hasNext){
+      val row = rows.next()
+      val rowData:RowData = RowData(
+        row.getCell(0).getStringCellValue,
+        row.getCell(1).getStringCellValue,
+        row.getCell(2).getStringCellValue,
+        row.getCell(3).getStringCellValue)
+      rowDataList = rowData::rowDataList
+    }
+    rowDataList.reverse
   }
   
   def printFile(rowDataList: List[RowData]) = {
-
+???
   }
 
 }
